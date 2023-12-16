@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => InfrastructurePage(),
+        '/loginAffiliation': (context) => LoginAffiliationPage(),
         '/projectList': (context) => ProjectListPage(),
       },
     );
@@ -27,13 +28,13 @@ class InfrastructurePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Inframate'),
+        title: Text('Welcome to Inframate'),
       ),
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
           Image.asset(
-            'images/city.jpeg', 
+            'images/city.jpeg', // Replace with your image path
             fit: BoxFit.cover,
           ),
           Center(
@@ -45,7 +46,7 @@ class InfrastructurePage extends StatelessWidget {
                   'Welcome to Inframate',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 40.0,
+                    fontSize: 28.0,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
@@ -66,12 +67,64 @@ class InfrastructurePage extends StatelessWidget {
                 SizedBox(height: 50),
                 ElevatedButton(
                   onPressed: () {
-                    // Navigate to Project List Page
-                    Navigator.pushNamed(context, '/projectList');
+                    // Navigate to Login Affiliation Page
+                    Navigator.pushNamed(context, '/loginAffiliation');
                   },
-                  child: Text('Go to Project List'),
+                  child: Text('Login with Affiliated ID'),
                 ),
               ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class LoginAffiliationPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Affiliated Login'),
+      ),
+      body: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          Image.asset(
+            'images/city_2.jpg', // Replace with your image path
+            fit: BoxFit.cover,
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Affiliated ID',
+                      filled: true,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      filled: true,
+                    ),
+                    obscureText: true,
+                  ),
+                  SizedBox(height: 30),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Navigate to Project List Page
+                      Navigator.pushNamed(context, '/projectList');
+                    },
+                    child: Text('Login'),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -87,19 +140,11 @@ class ProjectListPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Project List'),
       ),
-      body: Stack(
-        children: <Widget>[
-            Image.asset('images/city.jpeg',
-            fit: BoxFit.cover,),
-            Text(
-              'List of Projects goes here.',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              )
+      body: Center(
+        child: Text(
+          'List of Projects goes here.',
+          style: TextStyle(fontSize: 20),
         ),
-        ],
       ),
     );
   }
